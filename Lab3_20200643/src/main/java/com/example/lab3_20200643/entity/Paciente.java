@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Controller
+@Entity
 @Table(name = "paciente")
 public class Paciente {
     @Id
@@ -35,9 +35,11 @@ public class Paciente {
     @Column(name = "numero_habitacion")
     private int numero_habitacion;
 
-    @Column(name = "doctor_id")
-    private int doctor_id;
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
 
-    @Column(name = "hospital_id")
-    private int hospital_id;
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
 }

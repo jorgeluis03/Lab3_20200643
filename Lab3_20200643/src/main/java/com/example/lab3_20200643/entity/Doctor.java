@@ -1,12 +1,13 @@
 package com.example.lab3_20200643.entity;
 
 import jakarta.persistence.*;
+import jdk.jfr.Category;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
 @Getter
 @Setter
-@Controller
+@Entity
 @Table(name = "doctor")
 public class Doctor {
     @Id
@@ -20,8 +21,9 @@ public class Doctor {
     @Column(name = "especialidad")
     private String especialidad;
 
-    @Column(name = "hospital_id")
-    private int hospital_id;
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
 
 
 }

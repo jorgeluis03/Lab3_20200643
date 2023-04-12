@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 @Getter
 @Setter
-@Controller
+@Entity
 @Table(name = "hospital")
 public class Hospital {
 
