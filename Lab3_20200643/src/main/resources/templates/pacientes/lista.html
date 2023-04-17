@@ -58,7 +58,7 @@
             <td th:text = "${paciente.hospital.nombre}"></td>
 
             <td> <a class="btn btn-info" th:href="@{'/pacientes/editar?id='+${paciente.id}}"> Editar</a> </td>
-            <td> <a class="btn btn-success"  >Derivar Pacientes</a> </td>
+            <td> <a class="btn btn-success"  th:href="@{'/pacientes/derivar?id='+${paciente.id}}">Derivar Pacientes</a> </td>
 
         </tr>
 

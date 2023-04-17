@@ -1,6 +1,8 @@
 package com.example.lab3_20200643.controllers;
 
+import com.example.lab3_20200643.entity.Doctor;
 import com.example.lab3_20200643.entity.Paciente;
+import com.example.lab3_20200643.repository.DoctorRepository;
 import com.example.lab3_20200643.repository.PacienteRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +19,11 @@ import java.util.Optional;
 public class PacienteController {
     //##################33
     final PacienteRepository pacienteRepository;
+    final DoctorRepository doctorRepository;
 
-
-    public PacienteController(PacienteRepository pacienteRepository) {
+    public PacienteController(PacienteRepository pacienteRepository, DoctorRepository doctorRepository) {
         this.pacienteRepository = pacienteRepository;
+        this.doctorRepository = doctorRepository;
     }
     //###########
     @GetMapping("/listar")
@@ -47,9 +50,25 @@ public class PacienteController {
     @PostMapping("/guardar")
     public String guardar (@RequestParam("numero_habitacion") int num,@RequestParam("id") int id){
         System.out.println("hastaa acaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        pacienteRepository.actualizarPaciente(num,id);
+        //pacienteRepository.actualizarPaciente(num,id);
         System.out.println("se guardooooooooooooo");
         return "redirect:/pacientes/listar";
+    }
+    @GetMapping("/derivar")
+    public String derivar(Model model, @RequestParam("id") int id){
+        //encontramos el id
+        Optional<Paciente> optionalPaciente = pacienteRepository.findById(id);
+        if(optionalPaciente.isPresent()){
+            Paciente paciente = optionalPaciente.get();
+            List<Doctor> listaDoctores = doctorRepository.findAll();
+            model.addAttribute("paciente",paciente);
+            model.addAttribute("listaDoc", listaDoctores);
+            return "pacientes/derivar";
+
+        }else {
+            return "redirect:/pacientes/listar";
+        }
+
     }
 
 

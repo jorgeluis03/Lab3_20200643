@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar bg-body-tertiary justify-content-end">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{'/hospitales/listar'}">Hospitales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{'/doctores/listar'}">Doctores</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{'/pacientes/listar'}">Pacientes</a>
+        </li>
+
+    </ul>
+</nav>
+<br>
+<div class='container'>
+    <h1 class='mb-3'>Derivar Paciente</h1>
+    <form method="POST" th:action="@{'/pacientes/guardar'}">
+        <input th:value="${paciente.id}" type="hidden" name="id">
+        <div class="form-group">
+            <label for="docantes">Derivar del Doctor </label>
+            <select class="form-select" name ="docantes" id="docantes" aria-label="Default select example">
+                <option th:each="doctor: ${listaDoc}" th:value="${doctor.id}" th:text="${doctor.nombre}"
+                th:selected="${doctor.id==paciente.doctor.id}"></option>
+            </select>
+        </div >
+        <div class="form-group">
+            <label for="docnuevo">Al Doctor </label>
+            <select class="form-select" aria-label="Default select example" name ="docnuevo" id="docnuevo">
+                <option th:each="doctor : ${listaDoc}" th:value="${doctor.id}" th:text="${doctor.nombre}">
+
+                </option>
+                
+            </select>
+        </div >
+
+        <br>
+        <a class="btn btn-danger" th:href="@{'/pacientes/listar'}" >Cancelar</a>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+</body>
+</html>
