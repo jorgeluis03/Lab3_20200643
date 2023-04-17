@@ -49,10 +49,14 @@ public class PacienteController {
     }
     @PostMapping("/guardar")
     public String guardar (@RequestParam("numero_habitacion") int num,@RequestParam("id") int id){
-        System.out.println("hastaa acaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        //pacienteRepository.actualizarPaciente(num,id);
-        System.out.println("se guardooooooooooooo");
-        return "redirect:/pacientes/listar";
+        Optional<Paciente> optionalPaciente = pacienteRepository.findById(id);
+        if(optionalPaciente.isPresent()){
+            pacienteRepository.actualizarPaciente(num,id);
+            return "redirect:/pacientes/listar";
+        }else {
+            return "redirect:/pacientes/listar";
+        }
+
     }
     @GetMapping("/derivar")
     public String derivar(Model model, @RequestParam("id") int id){
@@ -69,6 +73,16 @@ public class PacienteController {
             return "redirect:/pacientes/listar";
         }
 
+    }
+    @PostMapping("/guardarDerivacion")
+    public String guardarDerivacion(@RequestParam("id") int id, @RequestParam("idDocNuevo") int idDoc ){
+        Optional<Paciente> optionalPaciente = pacienteRepository.findById(id);
+        if(optionalPaciente.isPresent()){
+            pacienteRepository.actualizarDoctorPaciente(idDoc,id);
+            return "redirect:/pacientes/listar";
+        }else {
+            return "redirect:/pacientes/listar";
+        }
     }
 
 

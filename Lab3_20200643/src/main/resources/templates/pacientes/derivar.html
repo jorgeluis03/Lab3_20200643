@@ -25,22 +25,22 @@
 <br>
 <div class='container'>
     <h1 class='mb-3'>Derivar Paciente</h1>
-    <form method="POST" th:action="@{'/pacientes/guardar'}">
+    <form method="POST" th:action="@{'/pacientes/guardarDerivacion'}">
         <input th:value="${paciente.id}" type="hidden" name="id">
         <div class="form-group">
             <label for="docantes">Derivar del Doctor </label>
-            <select class="form-select" name ="docantes" id="docantes" aria-label="Default select example">
+            <select class="form-select" name ="docantes" id="docantes" aria-label="Default select example" disabled>
                 <option th:each="doctor: ${listaDoc}" th:value="${doctor.id}" th:text="${doctor.nombre}"
                 th:selected="${doctor.id==paciente.doctor.id}"></option>
             </select>
         </div >
         <div class="form-group">
             <label for="docnuevo">Al Doctor </label>
-            <select class="form-select" aria-label="Default select example" name ="docnuevo" id="docnuevo">
+            <select class="form-select" aria-label="Default select example" name ="idDocNuevo" id="docnuevo">
                 <option th:each="doctor : ${listaDoc}" th:value="${doctor.id}" th:text="${doctor.nombre}">
 
                 </option>
-                
+
             </select>
         </div >
 
