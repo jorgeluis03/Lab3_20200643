@@ -10,10 +10,6 @@ import java.util.List;
 
 @Repository
 public interface HospitalRepository extends JpaRepository<Hospital,Integer> {
-    @Query(nativeQuery = true, value = "SELECT * FROM doctor where hospital_id= ?1 ")
-    List<Doctor> listaDoctoresHospital (int hospital_id);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM paciente where hospital_id= ?1 ")
-    List<Doctor> listaPacientesxHospital (int hospital_id);
 
 }

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar bg-body-tertiary justify-content-end">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{'/hospitales/listar'}">Hospitales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{'/doctores/listar'}">Doctores</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{'/pacientes/listar'}">Pacientes</a>
+        </li>
+
+    </ul>
+</nav>
+<br>
+<div class='container'>
+    <h1 class='mb-3'>Editar Paciente</h1>
+    <form method="POST" th:action="@{'/pacientes/guardar'}">
+        <input th:value="${paciente.id}" type="hidden" name="id">
+        <div class="form-group">
+            <label for="nombre">Nombre </label>
+            <input th:value="${paciente.nombre}" type="text" class="form-control" name="nombre" id="nombre" disabled>
+        </div >
+        <div class="form-group">
+            <label for="edad">Edad </label>
+            <input th:value="${paciente.edad}" type="text" class="form-control" name="edad" id="edad" disabled>
+        </div >
+        <div class="form-group">
+            <label for="genero">Genero </label>
+            <input th:value="${paciente.genero}" type="text" class="form-control" name="genero" id="genero" disabled>
+        </div >
+        <div class="form-group">
+            <label for="diagnostico">Diagnostico </label>
+            <input th:value="${paciente.diagnostico}" type="text" class="form-control" name="diagnostico" id="diagnostico" disabled>
+        </div >
+        <div class="form-group">
+            <label for="fecha_cita">Fecha de cita </label>
+            <input th:value="${paciente.fecha_cita}" type="text" class="form-control" name="fecha_cita" id="fecha_cita" disabled>
+        </div >
+        <div class="form-group">
+            <label for="numero_habitacion">Num habitacion </label>
+            <input th:value="${paciente.numero_habitacion}" type="text" class="form-control" name="numero_habitacion" id="numero_habitacion" >
+        </div >
+        <div class="form-group">
+            <label for="doctor">Doctor </label>
+            <input th:value="${paciente.doctor.nombre}" type="text" class="form-control" name="doctor" id="doctor" disabled>
+        </div >
+        <div class="form-group">
+            <label for="hospital">Hospital</label>
+            <input th:value="${paciente.hospital.nombre}" type="text" class="form-control" name="hospital" id="hospital" disabled>
+        </div >
+        <br>
+        <a class="btn btn-danger" th:href="@{'/pacientes/listar'}" >Cancelar</a>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+</body>
+</html>

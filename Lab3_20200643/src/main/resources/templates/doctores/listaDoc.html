@@ -24,7 +24,7 @@
 </nav>
 <br>
 <div class = "container">
-    <h1 class="container text-center">LISTA DE PACIENTES</h1>
+    <h1 class="container text-center">LISTA DE DOCTORES</h1>
 
     <br>
     <table class="table">
@@ -32,12 +32,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Edad</th>
-            <th scope="col">Genero</th>
-            <th scope="col">Diagnostico</th>
-            <th scope="col">Fecha de Cita</th>
-            <th scope="col">Numero Habitacion</th>
-            <th scope="col">Doctor</th>
+            <th scope="col">Especialidad</th>
             <th scope="col">Hospital</th>
             <th></th>
             <th></th>
@@ -45,20 +40,15 @@
         <thead>
         <tbody>
 
-        <tr th:each="paciente, indice : ${listaPacientes}">
+        <tr th:each="doctor, indice : ${listaDoctores}">
 
             <td th:text = "${indice.index +1}"></td>
-            <td th:text = "${paciente.nombre}"></td>
-            <td th:text = "${paciente.edad}"></td>
-            <td th:text = "${paciente.genero}"></td>
-            <td th:text = "${paciente.diagnostico}"></td>
-            <td th:text = "${paciente.fecha_cita}"></td>
-            <td th:text = "${paciente.numero_habitacion}"></td>
-            <td th:text = "${paciente.doctor.nombre}"></td>
-            <td th:text = "${paciente.hospital.nombre}"></td>
+            <td th:text = "${doctor.nombre}"></td>
+            <td th:text = "${doctor.especialidad}"></td>
+            <td th:text = "${doctor.hospital.nombre}"></td>
+            <td> <a class="btn btn-success" th:href="@{'/doctores/listaPacientes?id='+${doctor.id}}" >Mostrar pacientes</a> </td>
+            <td> <a class="btn btn-info" th:href="@{'/doctores/listaPacientes?id='+${doctor.id}}"> Próximas citas</a> </td>
 
-            <td> <a class="btn btn-info" th:href="@{'/pacientes/editar?id='+${paciente.id}}"> Editar</a> </td>
-            <td> <a class="btn btn-success"  >Derivar Pacientes</a> </td>
 
         </tr>
 
