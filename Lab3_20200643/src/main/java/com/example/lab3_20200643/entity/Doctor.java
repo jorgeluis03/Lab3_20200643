@@ -15,7 +15,7 @@ public class Doctor {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "user_name")
     private String nombre;
 
     @Column(name = "especialidad")
